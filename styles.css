@@ -15,10 +15,33 @@ body {
 #storyPointValue {
     font-size: 5rem;
     font-weight: bold;
-    color: #0d6efd;
+    color: #fe5348;
 }
 
 .table th {
-    background-color: #0d6efd;
+    background-color: #fe5348;
     color: white;
+}
+
+/* Update Bootstrap primary color */
+.btn-primary {
+    background-color: #fe5348;
+    border-color: #fe5348;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: #e04a40;
+    border-color: #e04a40;
+}
+
+.bg-primary {
+    background-color: #fe5348 !important;
+}
+
+.text-info {
+    color: #fe5348 !important;
+}
+
+.card-header.bg-primary {
+    background-color: #fe5348 !important;
 }
