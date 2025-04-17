@@ -7,32 +7,98 @@ const DEPENDENCIES_WEIGHT = 0.3;
 let savedTasks = [];
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Add console log to verify initialization
+    console.log("Script initialized");
+    
     // Button click event instead of form submission
-    document.getElementById('calculateButton').addEventListener('click', function() {
-        calculatePoints();
-    });
+    const calculateButton = document.getElementById('calculateButton');
+    if (calculateButton) {
+        console.log("Calculate button found");
+        calculateButton.addEventListener('click', function() {
+            console.log("Calculate button clicked");
+            try {
+                calculatePoints();
+            } catch (error) {
+                console.error("Error in calculation:", error);
+                alert("An error occurred: " + error.message);
+            }
+        });
+    } else {
+        console.error("Calculate button not found!");
+    }
     
     // Reset button event
-    document.getElementById('resetButton').addEventListener('click', function() {
-        document.getElementById('calculatorForm').reset();
-        document.getElementById('resultContainer').classList.add('d-none');
-    });
+    const resetButton = document.getElementById('resetButton');
+    if (resetButton) {
+        resetButton.addEventListener('click', function() {
+            document.getElementById('calculatorForm').reset();
+            document.getElementById('resultContainer').classList.add('d-none');
+        });
+    }
     
     // Save button event
-    document.getElementById('saveButton').addEventListener('click', function() {
-        saveTask();
-    });
+    const saveButton = document.getElementById('saveButton');
+    if (saveButton) {
+        saveButton.addEventListener('click', function() {
+            saveTask();
+        });
+    }
 });
 
 function calculatePoints() {
+    console.log("Starting calculation");
+    
+    // Check required fields
+    const taskName = document.getElementById('taskName').value;
+    if (!taskName) {
+        alert("Please enter a task name");
+        return;
+    }
+    
     // Get task-specific values
-    const taskType = document.getElementById('taskType').value;
-    const similarTask = document.getElementById('similarTask').value;
+    const taskTypeElement = document.getElementById('taskType');
+    if (!taskTypeElement || !taskTypeElement.value) {
+        alert("Please select a task type");
+        return;
+    }
+    const taskType = taskTypeElement.value;
+    
+    const similarTaskElement = document.getElementById('similarTask');
+    if (!similarTaskElement || !similarTaskElement.value) {
+        alert("Please select task similarity");
+        return;
+    }
+    const similarTask = similarTaskElement.value;
     
     // Get core metric values
-    const effortValue = parseInt(document.getElementById('effortTime').value);
-    const complexityValue = parseInt(document.getElementById('complexity').value);
-    const dependenciesValue = parseInt(document.getElementById('dependencies').value);
+    const effortTimeElement = document.getElementById('effortTime');
+    if (!effortTimeElement || !effortTimeElement.value) {
+        alert("Please select effort time");
+        return;
+    }
+    const effortValue = parseInt(effortTimeElement.value);
+    
+    const complexityElement = document.getElementById('complexity');
+    if (!complexityElement || !complexityElement.value) {
+        alert("Please select complexity");
+        return;
+    }
+    const complexityValue = parseInt(complexityElement.value);
+    
+    const dependenciesElement = document.getElementById('dependencies');
+    if (!dependenciesElement || !dependenciesElement.value) {
+        alert("Please select dependencies");
+        return;
+    }
+    const dependenciesValue = parseInt(dependenciesElement.value);
+    
+    console.log("Input values:", {
+        taskType,
+        similarTask,
+        effort: effortValue,
+        complexity: complexityValue,
+        dependencies: dependenciesValue
+    });
     
     // Apply adjustments based on task type and similarity
     let adjustedComplexity = complexityValue;
@@ -68,12 +134,24 @@ function calculatePoints() {
         adjustedEffort = Math.min(8, adjustedEffort + 1); // Increase effort for brand new tasks
     }
     
+    console.log("Adjusted values:", {
+        adjustedEffort,
+        adjustedComplexity
+    });
+    
     // Calculate the weighted factors
     const effortFactor = EFFORT_WEIGHT * adjustedEffort;
     const complexityFactor = COMPLEXITY_WEIGHT * adjustedComplexity;
     const dependenciesFactor = DEPENDENCIES_WEIGHT * dependenciesValue;
     
     let rawPoints = effortFactor + complexityFactor + dependenciesFactor;
+    
+    console.log("Factors:", {
+        effortFactor,
+        complexityFactor,
+        dependenciesFactor,
+        rawPoints
+    });
     
     // Map to Fibonacci sequence (1, 2, 3, 5, 8, 13, 21)
     const fibonacci = [1, 2, 3, 5, 8, 13, 21];
@@ -86,12 +164,18 @@ function calculatePoints() {
     }
     
     const calculatedPoints = fibonacci[closestIndex];
+    console.log("Calculated points:", calculatedPoints);
     
     // Store the calculated points for saving later
     window.calculatedPoints = calculatedPoints;
     
     // Display the result
-    document.getElementById('storyPointValue').innerText = calculatedPoints;
+    const storyPointValueElement = document.getElementById('storyPointValue');
+    if (storyPointValueElement) {
+        storyPointValueElement.innerText = calculatedPoints;
+    } else {
+        console.error("Story point value element not found!");
+    }
     
     // Generate task-specific recommendations and notes
     let taskSpecificNotes = "";
@@ -141,8 +225,20 @@ function calculatePoints() {
         ${taskSpecificNotes}
     `;
     
-    document.getElementById('explanation').innerHTML = explanationHTML;
-    document.getElementById('resultContainer').classList.remove('d-none');
+    const explanationElement = document.getElementById('explanation');
+    if (explanationElement) {
+        explanationElement.innerHTML = explanationHTML;
+    } else {
+        console.error("Explanation element not found!");
+    }
+    
+    const resultContainer = document.getElementById('resultContainer');
+    if (resultContainer) {
+        resultContainer.classList.remove('d-none');
+        console.log("Result container displayed");
+    } else {
+        console.error("Result container not found!");
+    }
 }
 
 function saveTask() {
