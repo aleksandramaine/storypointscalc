@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kpler Growth Marketing Story Points Calculator</title>
+    <!-- Added version number to force update -->
+    <title>Growth Marketing Story Points Calculator v2.0</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Force cache refresh -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 </head>
 <body>
+    <!-- Last updated: April 18, 2025 -->
     <div class="container">
         <div class="calculator-container">
             <h2 class="text-center mb-4">Story Points Calculator</h2>
             
-            <!-- Important: Added onsubmit="return false;" to prevent form submission -->
             <form id="calculatorForm" onsubmit="return false;">
                 <div class="mb-3">
                     <label for="taskName" class="form-label">Task Name</label>
@@ -82,7 +87,6 @@
                     </select>
                 </div>
                 
-                <!-- Changed to type="button" instead of type="submit" -->
                 <button type="button" id="calculateButton" class="btn btn-primary w-100">Calculate Story Points</button>
             </form>
             
@@ -111,11 +115,12 @@
             </button>
         </div>
         
+        <!-- Updated reference modal with new structure -->
         <div class="modal fade" id="referenceModal" tabindex="-1" aria-labelledby="referenceModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="referenceModalLabel">Story Points Reference</h5>
+                        <h5 class="modal-title" id="referenceModalLabel">Growth Marketing Story Points Guide</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -123,11 +128,11 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Story Points</th>
-                                        <th>Effort & Time</th>
-                                        <th>What It Means</th>
+                                        <th>Points</th>
+                                        <th>Time Estimate</th>
+                                        <th>Complexity Level</th>
                                         <th>Dependencies</th>
-                                        <th>Examples</th>
+                                        <th>Marketing Examples</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -136,42 +141,42 @@
                                         <td>Very quick (< 2 hours)</td>
                                         <td>Trivial task, well-understood</td>
                                         <td>No dependencies</td>
-                                        <td>Quick copy updates, minor CSS tweaks</td>
+                                        <td>Quick copy updates for website, simple social media post</td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
                                         <td>Small (half a day)</td>
                                         <td>Simple task with clear requirements</td>
                                         <td>Minimal dependencies</td>
-                                        <td>Adding a CTA button, simple email setup</td>
+                                        <td>Adding a CTA button, simple email setup, basic keyword research</td>
                                     </tr>
                                     <tr>
                                         <td>3</td>
                                         <td>Medium (1 day)</td>
                                         <td>Moderate complexity, mostly understood</td>
                                         <td>Some dependencies</td>
-                                        <td>Creating a basic landing page, simple campaign</td>
+                                        <td>Creating a basic landing page, setting up a simple campaign, content for a blog post</td>
                                     </tr>
                                     <tr>
                                         <td>5</td>
                                         <td>Large (2-3 days)</td>
                                         <td>Complex task with some unknowns</td>
                                         <td>Multiple dependencies</td>
-                                        <td>New email flow, complex landing page</td>
+                                        <td>New email nurture flow, complex landing page, audience segmentation strategy</td>
                                     </tr>
                                     <tr>
                                         <td>8</td>
                                         <td>Very large (3-5 days)</td>
                                         <td>Very complex with significant unknowns</td>
                                         <td>Many dependencies</td>
-                                        <td>New feature, complex automation flow</td>
+                                        <td>Marketing automation workflow, comprehensive campaign planning, conversion optimization project</td>
                                     </tr>
                                     <tr>
                                         <td>13</td>
                                         <td>Massive (5+ days)</td>
                                         <td>Extremely complex project with many unknowns</td>
                                         <td>Critical external dependencies</td>
-                                        <td>New platform integration, major campaign launch</td>
+                                        <td>New marketing platform integration, major product launch campaign, complete funnel redesign</td>
                                     </tr>
                                 </tbody>
                             </table>
