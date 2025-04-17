@@ -1,0 +1,24 @@
+body {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+}
+
+.calculator-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 700px;
+}
+
+#storyPointValue {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #0d6efd;
+}
+
+.table th {
+    background-color: #0d6efd;
+    color: white;
+}
