@@ -7,9 +7,8 @@ const DEPENDENCIES_WEIGHT = 0.3;
 let savedTasks = [];
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Form submission event - ENSURING THE PREVENTION OF DEFAULT BEHAVIOR
-    document.getElementById('calculatorForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // This line is critical - it prevents the form from submitting and refreshing
+    // Button click event instead of form submission
+    document.getElementById('calculateButton').addEventListener('click', function() {
         calculatePoints();
     });
     
