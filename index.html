@@ -12,7 +12,8 @@
         <div class="calculator-container">
             <h2 class="text-center mb-4">Story Points Calculator</h2>
             
-            <form id="calculatorForm">
+            <!-- Important: Added onsubmit="return false;" to prevent form submission -->
+            <form id="calculatorForm" onsubmit="return false;">
                 <div class="mb-3">
                     <label for="taskName" class="form-label">Task Name</label>
                     <input type="text" class="form-control" id="taskName" required>
@@ -81,7 +82,8 @@
                     </select>
                 </div>
                 
-                <button type="submit" class="btn btn-primary w-100">Calculate Story Points</button>
+                <!-- Changed to type="button" instead of type="submit" -->
+                <button type="button" id="calculateButton" class="btn btn-primary w-100">Calculate Story Points</button>
             </form>
             
             <div id="resultContainer" class="mt-4 d-none">
