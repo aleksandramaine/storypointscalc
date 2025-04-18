@@ -1,193 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Added version number to force update -->
-    <title>Growth Marketing Story Points Calculator v2.0</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <!-- Force cache refresh -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-</head>
-<body>
-    <!-- Last updated: April 18, 2025 -->
-    <div class="container">
-        <div class="calculator-container">
-            <h2 class="text-center mb-4">Story Points Calculator</h2>
-            
-            <form id="calculatorForm" onsubmit="return false;">
-                <div class="mb-3">
-                    <label for="taskName" class="form-label">Task Name</label>
-                    <input type="text" class="form-control" id="taskName" required>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="taskType" class="form-label">Marketing Activity Type</label>
-                    <select class="form-select" id="taskType" required>
-                        <option value="" selected disabled>-- Select activity type --</option>
-                        <option value="copy">Simple Copy Changes (blog, website text)</option>
-                        <option value="social">Social Media Post/Campaign</option>
-                        <option value="email">Email Campaign/Newsletter</option>
-                        <option value="landing">Landing Page Creation/Update</option>
-                        <option value="webinar">Webinar/Virtual Event Planning</option>
-                        <option value="ppc">Paid Media Setup (Search/Social)</option>
-                        <option value="seo">SEO Optimization</option>
-                        <option value="content">Content Creation (guide, whitepaper)</option>
-                        <option value="analytics">Analytics/Reporting Setup</option>
-                        <option value="nurture">Lead Nurture Flow/Journey</option>
-                        <option value="product">Product Launch Marketing</option>
-                        <option value="other">Other Marketing Activity</option>
-                    </select>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="similarTask" class="form-label">Have you done this before?</label>
-                    <select class="form-select" id="similarTask" required>
-                        <option value="no">No, this is brand new</option>
-                        <option value="somewhat">Somewhat similar to previous work</option>
-                        <option value="very">Very similar, we've done this before</option>
-                        <option value="repeat">This is almost identical to previous work</option>
-                    </select>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="effortTime" class="form-label">How much time will this task take?</label>
-                    <select class="form-select" id="effortTime" required>
-                        <option value="1">Very quick (< 2 hours)</option>
-                        <option value="2">Small (half a day)</option>
-                        <option value="3">Medium (1 day)</option>
-                        <option value="5">Large (2-3 days)</option>
-                        <option value="8">Very large (3-5 days)</option>
-                        <option value="13">Massive (5+ days)</option>
-                    </select>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="complexity" class="form-label">How complex is this task?</label>
-                    <select class="form-select" id="complexity" required>
-                        <option value="1">Very simple (straightforward, well-understood)</option>
-                        <option value="2">Simple (minor complications)</option>
-                        <option value="3">Moderate (some unknown elements)</option>
-                        <option value="5">Complex (significant unknowns)</option>
-                        <option value="8">Very complex (mostly unknowns, new territory)</option>
-                    </select>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="dependencies" class="form-label">External dependencies and stakeholders?</label>
-                    <select class="form-select" id="dependencies" required>
-                        <option value="1">None (I can do this independently)</option>
-                        <option value="2">Few (need input from 1-2 people)</option>
-                        <option value="3">Several (need approval or resources from another team)</option>
-                        <option value="5">Many (coordinating with multiple teams)</option>
-                        <option value="8">Critical (blocked until external parties deliver)</option>
-                    </select>
-                </div>
-                
-                <button type="button" id="calculateButton" class="btn btn-primary w-100">Calculate Story Points</button>
-            </form>
-            
-            <div id="resultContainer" class="mt-4 d-none">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0">Recommended Story Points</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="text-center mb-3">
-                            <span id="storyPointValue" class="display-4"></span>
-                        </div>
-                        <div id="explanation" class="small"></div>
-                    </div>
-                    <div class="card-footer">
-                        <button id="resetButton" class="btn btn-outline-secondary w-100">Reset Calculator</button>
-                        <button id="saveButton" class="btn btn-success w-100 mt-2">Save as CSV</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="mt-4 text-center">
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#referenceModal">
-                View Story Points Reference
-            </button>
-        </div>
-        
-        <!-- Updated reference modal with new structure -->
-        <div class="modal fade" id="referenceModal" tabindex="-1" aria-labelledby="referenceModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="referenceModalLabel">Growth Marketing Story Points Guide</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Points</th>
-                                        <th>Time Estimate</th>
-                                        <th>Complexity Level</th>
-                                        <th>Dependencies</th>
-                                        <th>Marketing Examples</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Very quick (< 2 hours)</td>
-                                        <td>Trivial task, well-understood</td>
-                                        <td>No dependencies</td>
-                                        <td>Quick copy updates for website, simple social media post</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Small (half a day)</td>
-                                        <td>Simple task with clear requirements</td>
-                                        <td>Minimal dependencies</td>
-                                        <td>Adding a CTA button, simple email setup, basic keyword research</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Medium (1 day)</td>
-                                        <td>Moderate complexity, mostly understood</td>
-                                        <td>Some dependencies</td>
-                                        <td>Creating a basic landing page, setting up a simple campaign, content for a blog post</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Large (2-3 days)</td>
-                                        <td>Complex task with some unknowns</td>
-                                        <td>Multiple dependencies</td>
-                                        <td>New email nurture flow, complex landing page, audience segmentation strategy</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>Very large (3-5 days)</td>
-                                        <td>Very complex with significant unknowns</td>
-                                        <td>Many dependencies</td>
-                                        <td>Marketing automation workflow, comprehensive campaign planning, conversion optimization project</td>
-                                    </tr>
-                                    <tr>
-                                        <td>13</td>
-                                        <td>Massive (5+ days)</td>
-                                        <td>Extremely complex project with many unknowns</td>
-                                        <td>Critical external dependencies</td>
-                                        <td>New marketing platform integration, major product launch campaign, complete funnel redesign</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- Growth marketing-focused reference table -->
+<div class="modal-body">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Story Points</th>
+                    <th>Effort & Time</th>
+                    <th>What It Means</th>
+                    <th>Dependencies</th>
+                    <th>Examples</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Very quick (< 2 hours)</td>
+                    <td>Trivial task, well-understood</td>
+                    <td>No dependencies</td>
+                    <td>Quick copy updates for website, simple social media post</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Small (half a day)</td>
+                    <td>Simple task with clear requirements</td>
+                    <td>Minimal dependencies</td>
+                    <td>Adding a CTA button, simple email setup, basic keyword research</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Medium (1 day)</td>
+                    <td>Moderate complexity, mostly understood</td>
+                    <td>Some dependencies</td>
+                    <td>Creating a basic landing page, setting up a simple campaign, content for a blog post</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Large (2-3 days)</td>
+                    <td>Complex task with some unknowns</td>
+                    <td>Multiple dependencies</td>
+                    <td>New email nurture flow, complex landing page, audience segmentation strategy</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Very large (3-5 days)</td>
+                    <td>Very complex with significant unknowns</td>
+                    <td>Many dependencies</td>
+                    <td>Marketing automation workflow, comprehensive campaign planning, conversion optimization project</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Massive (5+ days)</td>
+                    <td>Extremely complex project with many unknowns</td>
+                    <td>Critical external dependencies</td>
+                    <td>New marketing platform integration, major product launch campaign, complete funnel redesign</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+</div>
